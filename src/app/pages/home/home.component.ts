@@ -19,6 +19,11 @@ export class HomeComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('list')) {
+      JSON.parse(localStorage.getItem('list')!).forEach((item: any) => {
+        this.list.push(moment(item));
+      });
+    }
   }
 
   calculateTime() {
@@ -30,9 +35,11 @@ export class HomeComponent implements OnInit {
   addToList(time: moment.Moment) {
     this.list.push(time);
     this.result = undefined;
+    localStorage.setItem('list', JSON.stringify(this.list));
   }
 
   removeFromList(index: number) {
     this.list.splice(index, 1);
+    localStorage.setItem('list', JSON.stringify(this.list));
   }
 }
