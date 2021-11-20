@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+.flex-box {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    * {
+        flex: 1;
+    }
+}
+
+mat-form-field {
+    min-width: 0;
+}
+
+@each $size in 100,80,50 {
+    .w-#{$size} {
+        width: #{$size + "%"};
+    }
+}
+
+@each $size in 8, 16, 24 {
+    .p-#{$size} {
+       padding: #{$size}px;
+    }
+    @each $dir in 'left', 'right', 'top', 'bottom' {
+        .p-#{$dir}-#{$size} {
+            padding-#{$dir}: #{$size}px;
+        }
+    }
+}
+
+@each $dir in 'right', 'left' {
+    .text-#{$dir} {
+        text-align: #{$dir};
+    }
+}
+
+.container {
+    @media (max-width: 780px) {
+        margin: 10px;
+    }
+    @media (min-width: 780px) {
+        width: 60%;
+        margin: auto;
+    }
+}
