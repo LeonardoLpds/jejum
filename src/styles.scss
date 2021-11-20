@@ -22,9 +22,15 @@ mat-form-field {
     .p-#{$size} {
        padding: #{$size}px;
     }
+    .m-#{$size} {
+        margin: #{$size}px;
+    }
     @each $dir in 'left', 'right', 'top', 'bottom' {
         .p-#{$dir}-#{$size} {
             padding-#{$dir}: #{$size}px;
+        }
+        .m-#{$dir}-#{$size} {
+            margin-#{$dir}: #{$size}px;
         }
     }
 }

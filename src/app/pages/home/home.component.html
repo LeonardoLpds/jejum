@@ -1,13 +1,21 @@
-<section class="flex-box">
-    <mat-form-field  style="flex-basis: 25%;">
-        <mat-label>Início do jejum</mat-label>
-        <input matInput type="datetime-local">
-    </mat-form-field>
-    <mat-form-field class="p-left-8">
-        <mat-label>Quantas horas de jejum?</mat-label>
-        <input matInput type="number">
-    </mat-form-field>
+<form [formGroup]="form" (ngSubmit)="calculateTime()">
+    <section class="flex-box">
+        <mat-form-field style="flex-basis: 25%;">
+            <mat-label>Início do jejum</mat-label>
+            <input formControlName="start" matInput type="datetime-local">
+        </mat-form-field>
+        <mat-form-field class="p-left-8">
+            <mat-label>Quantas horas de jejum?</mat-label>
+            <input formControlName="hours" matInput type="number">
+        </mat-form-field>
+    </section>
+    <div class="w-100 text-right">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">Calcular</button>
+    </div>
+</form>
+
+<section class="m-top-16" *ngIf="result">
+    <mat-card>
+        Você poderá abrir a janela <b>{{result.calendar()}}</b>
+    </mat-card>
 </section>
-<div class="w-100 text-right">
-    <button mat-raised-button color="primary">Calcular</button>
-</div>
