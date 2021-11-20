@@ -9,6 +9,7 @@ import * as moment from 'moment';
 })
 export class HomeComponent implements OnInit {
   result?: moment.Moment;
+  list: moment.Moment[] = [];
 
   form = this.fb.group({
     start: ['', Validators.required],
@@ -24,5 +25,14 @@ export class HomeComponent implements OnInit {
     if (!this.form.valid) return
     this.result = moment(this.form.controls['start'].value)
       .add(this.form.controls['hours'].value, 'hours');
+  }
+
+  addToList(time: moment.Moment) {
+    this.list.push(time);
+    this.result = undefined;
+  }
+
+  removeFromList(index: number) {
+    this.list.splice(index, 1);
   }
 }
