@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,13 @@ export class HomeComponent implements OnInit {
     hours: ['', [Validators.required, Validators.min(1)]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private auth: AuthService) { }
 
   ngOnInit(): void {
+    if (!this.auth.hasUser()) {
+      this.auth.newAnonymous();
+    }
+
     if (localStorage.getItem('list')) {
       JSON.parse(localStorage.getItem('list')!).forEach((item: any) => {
         this.list.push(moment(item));
